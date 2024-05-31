@@ -1,5 +1,6 @@
 @extends('admin.layouts.app')
 @section('konten')
+@if(Auth::user()->role != 'staff' && Auth::user()->role != 'manager')
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -66,5 +67,9 @@
                             </div>
                         </div>
                     </div>
-
+                    @else
+@php
+abort(403, 'Forbidden');
+@endphp
+@endif
 @endsection
